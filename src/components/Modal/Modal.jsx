@@ -1,4 +1,4 @@
-import { Component } from 'react/cjs/react.production.min';
+import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Overlay, Popup } from './Modal.styled';
 

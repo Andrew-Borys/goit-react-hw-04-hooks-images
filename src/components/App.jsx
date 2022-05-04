@@ -6,7 +6,6 @@ import Button from './Button';
 import Modal from './Modal';
 import { Wraper } from './App.styled';
 import Notiflix from 'notiflix';
-// import { logDOM } from '@testing-library/react';
 
 export function App() {
   const [searchQuery, setSearchQuery] = useState('');

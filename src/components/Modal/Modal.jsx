@@ -1,29 +1,35 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Overlay, Popup } from './Modal.styled';
 
-export default class ModaL extends Component {
-  keyDown = e => {
-    if (e.code === 'Escape') {
-      this.props.onModalClose();
-    }
-  };
-  componentDidMount(_, prevState) {
-    window.addEventListener('keydown', this.keyDown);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.keyDown);
-  }
-  render() {
-    return ReactDOM.createPortal(
-      <>
-        <Overlay onClick={this.props.onModalClose}>
-          <Popup>
-            <img src={this.props.modalImage} alt="#" />
-          </Popup>
-        </Overlay>
-      </>,
-      document.getElementById('modal-root')
-    );
-  }
+export default function ModaL({ onModalClose, modalImage }) {
+  useEffect(() => {
+    const keyDown = e => {
+      if (e.code === 'Escape') {
+        onModalClose();
+      }
+    };
+    window.addEventListener('keydown', keyDown);
+    return () => {
+      window.removeEventListener('keydown', keyDown);
+    };
+  }, [onModalClose]);
+
+  return ReactDOM.createPortal(
+    <>
+      <Overlay onClick={onModalClose}>
+        <Popup>
+          <img
+            style={{
+              width: '100 %',
+              height: '100%',
+            }}
+            src={modalImage}
+            alt="#"
+          />
+        </Popup>
+      </Overlay>
+    </>,
+    document.getElementById('modal-root')
+  );
 }

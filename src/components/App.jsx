@@ -69,7 +69,7 @@ export function App() {
       {error &&
         Notiflix.Report.failure(
           `${error}`,
-          'Oppp smth going wrong..., pls reload page.',
+          'Oppp smth going wrong...., pls reload page.',
           'Reload page'
         )}
       <ImageGallery gallery={gallery} onClick={onCurrentImage} />
